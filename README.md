@@ -6,12 +6,14 @@ Interface web pour le picking manuel des ondes P et S sur des signaux ultrasoniq
 
 ## 🎯 Comment ça marche ?
 
-1. Entrez le chemin du dossier contenant vos fichiers `CH1.txt`
+1. Sélectioner un fichier 
 2. Cliquez sur "Charger"
-3. Sur le graphique : **Clic gauche** → P (rouge) | **Clic droit** → S (bleu)
-4. Naviguez entre les fichiers avec "Suivant" / "Précédent"
-5. Sauvegardez les résultats en CSV
+3. Sur le graphique : sélectionner une option ondes p ou s
+4. Faire click gauche pour placer un marqueur 
+5. Naviguez entre les fichiers avec "Suivant" / "Précédent"
+6. Sauvegardez les résultats en CSV
 
 ## 📁 Format des fichiers
 
-Vos fichiers doivent être au format :
+Vos fichiers doivent être au format : txt avec deux colonnes.
+

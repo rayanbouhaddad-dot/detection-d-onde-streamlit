@@ -81,13 +81,12 @@ def load_picks_for_current():
     st.session_state.s_time = prev.get('S')
 
 def get_weeks():
-    """Retourne la liste des semaines disponibles dans le dossier data/."""
     base = st.session_state.data_folder
     if not os.path.exists(base):
         return []
     weeks = sorted([d for d in os.listdir(base)
                     if os.path.isdir(os.path.join(base, d))
-                    and 'week' in d.lower()])
+                    and 'export_ch1_week' in d.lower()])
     return weeks
 
 def load_week(week_name):

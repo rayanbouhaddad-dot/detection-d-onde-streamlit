@@ -56,7 +56,7 @@ def load_file(file_obj):
     t_raw = data[:, 0] * 1e6
     amp   = data[:, 1]
     # Décaler t=0 sur le début du burst
-    burst_idx = find_burst_start(amp, t_raw)
+    burst_idx = find_burst_start(amp)
     t = t_raw - t_raw[burst_idx]
     return t, amp
 

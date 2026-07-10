@@ -86,7 +86,7 @@ def get_weeks():
         return []
     weeks = sorted([d for d in os.listdir(base)
                     if os.path.isdir(os.path.join(base, d))
-                    and 'export_ch1_week' in d.lower()])
+                    and 'export_ch1' in d.lower()])
     return weeks
 
 def load_week(week_name):

@@ -49,6 +49,7 @@ def find_burst_start(amp, win=50, step=5, factor=20):
         if v > factor * noise:
             return i * step
     return 0
+
 def load_file(file_obj):
     """Charge un fichier TXT et retourne t (µs depuis burst) et amp."""
     raw = file_obj.read()
@@ -85,7 +86,7 @@ def get_weeks():
         return []
     weeks = sorted([d for d in os.listdir(base)
                     if os.path.isdir(os.path.join(base, d))
-                    and 'export_ch1' in d.lower()])
+                    and 'export_ch1_week' in d.lower()])
     return weeks
 
 def load_week(week_name):

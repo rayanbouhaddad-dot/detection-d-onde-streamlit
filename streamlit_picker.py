@@ -248,10 +248,11 @@ else:
 
     fig = go.Figure()
     fig.add_trace(go.Scatter(
-        x=t, y=amp, mode='lines',
-        line=dict(color='#4a9eff', width=0.9),
-        name='Signal'
-    ))
+    x=t, y=amp, mode='lines+markers',
+    line=dict(color='#4a9eff', width=0.9),
+    marker=dict(size=4, opacity=0),  # invisibles mais cliquables
+    name='Signal'
+))
     # Ligne t=0 (début burst)
     fig.add_vline(x=0, line_color='#888888', line_dash='dot', line_width=1,
                   annotation_text="t=0 (burst)", annotation_font_color='#888',

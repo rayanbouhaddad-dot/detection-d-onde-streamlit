@@ -297,6 +297,25 @@ else:
                 st.session_state.s_time = round(x_click, 3)
             st.session_state.click_mode = None
             st.rerun()
+        # Encadré résumé des temps P et S
+    p_display = f"{p:.3f} µs" if p is not None else "—"
+    s_display = f"{s:.3f} µs" if s is not None else "—"
+    st.markdown(f"""
+    <div style="
+        display: flex; gap: 20px; justify-content: center;
+        background-color: #1a1d29; border-radius: 8px;
+        padding: 12px 20px; margin-top: 10px;
+    ">
+        <div style="text-align:center;">
+            <span style="color:#888; font-size:0.85rem;">Onde P</span><br>
+            <span style="color:#ff4d4d; font-weight:bold; font-size:1.3rem;">{p_display}</span>
+        </div>
+        <div style="text-align:center;">
+            <span style="color:#888; font-size:0.85rem;">Onde S</span><br>
+            <span style="color:#4daaff; font-weight:bold; font-size:1.3rem;">{s_display}</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)            
 
     fname = st.session_state.file_names[idx]
     week_label = f" — {st.session_state.week}" if st.session_state.week else ""

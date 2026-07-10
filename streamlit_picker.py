@@ -42,14 +42,8 @@ init_state()
 
 # ── Helpers ────────────────────────────────────────────────────────
 def find_burst_start(amp, baseline_n=200, factor=4):
-    """Trouve le début du burst -> devient t=0.
-    baseline_n : nb d'échantillons du début du fichier considérés comme bruit de fond
-    factor : seuil = factor x std du bruit
-    """
-    baseline = amp[:baseline_n]
-    baseline_std = np.std(baseline)
+    baseline_std = np.std(amp[:baseline_n])
     threshold = factor * baseline_std
-
     for i in range(baseline_n, len(amp)):
         if abs(amp[i]) > threshold:
             return i

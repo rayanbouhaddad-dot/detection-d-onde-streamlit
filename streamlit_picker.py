@@ -41,10 +41,9 @@ init_state()
 
 
 # ── Helpers ────────────────────────────────────────────────────────
-def find_burst_start(amp, baseline_n=200, factor=4):
-    baseline_std = np.std(amp[:baseline_n])
-    threshold = factor * baseline_std
-    for i in range(baseline_n, len(amp)):
+def find_burst_start(amp, threshold=10):
+    """Premier point qui dépasse le seuil d'amplitude -> devient t=0."""
+    for i in range(len(amp)):
         if abs(amp[i]) > threshold:
             return i
     return 0

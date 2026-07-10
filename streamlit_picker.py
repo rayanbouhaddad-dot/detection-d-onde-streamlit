@@ -41,26 +41,14 @@ init_state()
 
 
 # ── Helpers ────────────────────────────────────────────────────────
-def find_burst_start(amp, win=50, step=5, factor=20, refine_factor=4):
+def find_burst_start(amp, win=50, step=5, factor=20):
     """Trouve le début du burst initial -> devient t=0."""
     var = np.array([np.var(amp[i:i+win]) for i in range(0, len(amp)-win, step)])
     noise = np.percentile(var, 10)
-    coarse_idx = 0
     for i, v in enumerate(var):
         if v > factor * noise:
-            coarse_idx = i * step
-            break
-
-    baseline_std = np.std(amp[:max(coarse_idx - win, 1)]) if coarse_idx > win else np.std(amp[:win])
-    threshold = refine_factor * baseline_std
-
-    fine_idx = coarse_idx
-    for i in range(coarse_idx, max(coarse_idx - win, 0), -1):
-        if abs(amp[i]) < threshold:
-            fine_idx = i
-            break
-
-    return fine_idx
+            return i * step
+    return 0
 def load_file(file_obj):
     """Charge un fichier TXT et retourne t (µs depuis burst) et amp."""
     raw = file_obj.read()

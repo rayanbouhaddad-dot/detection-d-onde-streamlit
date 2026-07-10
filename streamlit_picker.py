@@ -41,7 +41,7 @@ init_state()
 
 
 # ── Helpers ────────────────────────────────────────────────────────
-def find_burst_start(amp, win=50, step=5, factor=20, refine_factor=4):
+def find_burst_start(amp, win=50, step=5, factor=20, refine_factor=4, quiet_run=8):
     """Trouve le début du burst initial -> devient t=0."""
     var = np.array([np.var(amp[i:i+win]) for i in range(0, len(amp)-win, step)])
     noise = np.percentile(var, 10)
@@ -55,10 +55,15 @@ def find_burst_start(amp, win=50, step=5, factor=20, refine_factor=4):
     threshold = refine_factor * baseline_std
 
     fine_idx = coarse_idx
+    quiet_count = 0
     for i in range(coarse_idx, max(coarse_idx - win, 0), -1):
         if abs(amp[i]) < threshold:
-            fine_idx = i
-            break
+            quiet_count += 1
+            if quiet_count >= quiet_run:
+                fine_idx = i + quiet_run  # le burst démarre juste après la zone calme
+                break
+        else:
+            quiet_count = 0
 
     return fine_idx
     
